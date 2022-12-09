@@ -1,0 +1,18 @@
+version: "3"
+services:
+  uwsgi:
+    restart: always
+    build: ./uwsgi
+    ports:
+      - "8000:8000"
+    volumes:
+      - db-data:/tmp
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "81:80"
+    volumes:
+      - db-data:/tmp:rw
+volumes:
+  db-data:
